@@ -1,0 +1,7 @@
+@baseUrl = http://localhost:4000/api/v1/auth/google
+
+###
+GET {{baseUrl}}/
+console.log 
+###
+GET {{baseUrl}}/callbak

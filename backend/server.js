@@ -1,9 +1,18 @@
 import express from 'express'
+import passport from 'passport'
 import 'dotenv/config'
 import cors from 'cors'
 import mongoose from 'mongoose'
 import router from './router/router.js'
 import errorHandlerMiddleware from './router/middleware/errorHendlerMiddeware.js'
+
+import googleStrategy from './configuration/passport.js'
+
+
+
+
+
+
 
 
 
@@ -12,6 +21,8 @@ import errorHandlerMiddleware from './router/middleware/errorHendlerMiddeware.js
 const server = express()
 server.use(express.json())
 server.use(cors())
+
+passport.use(googleStrategy)
 
 server.use(process.env.API_VERSION, router)
 server.use(errorHandlerMiddleware)

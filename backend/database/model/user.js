@@ -3,6 +3,11 @@ import bcrypt from 'bcrypt'
 
 const userSchema = new Schema({
 
+    googleId: {
+        type: String,
+        unique: true,
+        sparse: true,
+    },
     username: {
         type: String,
         required: true,
@@ -38,7 +43,6 @@ userSchema.pre('save', async function (next) {
     }
 })
     
-
 
 const User = mongoose.model('User', userSchema)
 

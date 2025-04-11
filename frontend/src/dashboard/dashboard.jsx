@@ -13,9 +13,18 @@ const Dashboard = () => {
     const navigate = useNavigate()
     const { enqueueSnackbar } = useSnackbar()
 
-    
+/*     document.addEventListener('DOMContentLoaded', () => {
+        const queryParams = new URLSearchParams(window.location.search)
+        const jwtToken = queryParams.get('token')
+        if(jwtToken){
+            console.log('Token received successfully'. jwtToken)
+            localStorage.setItem('authToken', jwtToken)
+        }else{
+            console.error('Token not received')
+        }
+}) */
 
-    useEffect(() => {
+/*     useEffect(() => {
         const fetchDasboard = async () => {
                 setIsLoadin(true)
                 setError(null)
@@ -68,7 +77,7 @@ const Dashboard = () => {
         fetchDasboard()
         
     }, [])
-
+ */
     
 
     

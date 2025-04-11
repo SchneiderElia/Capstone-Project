@@ -20,16 +20,19 @@ router.get ('/', getHome)
 router.post('/login', postLogIn)
 router.post('/signin', postSignIn)
 
-/////////  GOOGLE routes ////////////
+/////////  GOOGLE routes LOGIN+REGISTERED   ////////////
 
 router.get ('/auth/google', passport.authenticate('google', {
     scope: ['profile', 'email']
     }))
 
-router.get('/auth/google/callback', passport.authenticate('google', {session : false }),
+router.get('/auth/google/callback', passport.authenticate('google', {
+    session : false
+}),
         (request, response, next) =>{
-            response.redirect(process.env.SERVER_FRONTEND + '/login?jwt' + request.use)
-        })
+           return response.redirect(process.env.SERVER_FRONTEND + '/dashboard?jwt=' + request.user.token)
+        }
+    )
 
 /////////  DASHBOARD routes ////////////
 router.use(authorization)

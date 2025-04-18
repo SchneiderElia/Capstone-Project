@@ -1,0 +1,9 @@
+@baseUrl = http://localhost:4000/api/v1/blocks
+
+
+###
+GET {{baseUrl}}/
+
+###
+POST {{baseUrl}}/
+Content-Type: application/json

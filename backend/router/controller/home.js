@@ -7,9 +7,21 @@ import jwt from 'jsonwebtoken'
 /////////  GET   ////////////
 
 export const getHome = async (request, response, next) => {
-    console.log('hello this is a home route')
-    response.send('hello this is a home route')
-    next()
+    
+    const now = new Date()
+    
+    const apiSatus = {
+        status: "OK",
+        message: "Backend API is running correctly.",
+        apiVersion: process.env.API_VERSION,
+        timestamp: now.toISOString(), 
+        serverLocationInfo: { 
+            location: "Italy",
+            timezone: "Europe/Rome",
+            currentTime: now.toLocaleString('it-IT', { timeZone: 'Europe/Rome' })
+        }
+    }
+    response.status(200).json(apiSatus)
 }
 
 /////////   POST LOGIN  ////////////

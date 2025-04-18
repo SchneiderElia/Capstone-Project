@@ -3,3 +3,7 @@
 
 ###
 GET {{baseUrl}}/
+
+###
+POST {{baseUrl}}/
+Content-Type: application/json

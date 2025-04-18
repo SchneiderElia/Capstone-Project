@@ -11,6 +11,7 @@ import SingInText from './components/singInText'
 import SingInForm from './components/singInForm'
 
 
+
 const Home = () => {
 
     const navigate = useNavigate()

@@ -1,0 +1,9 @@
+@baseUrl = http://localhost:4000/api/v1/blocks/:id
+
+
+###
+GET {{baseUrl}}/notes
+
+###
+POST {{baseUrl}}/
+Content-Type: application/json

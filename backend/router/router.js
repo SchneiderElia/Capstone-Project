@@ -6,7 +6,7 @@ import { getHome, postLogIn, postSignIn } from './controller/home.js'
 import { getDashboard,} from './controller/dashboard.js'
 import { createBlock, updateBlock, deleteBlock } from './controller/blocks.js'
 import { getNotes } from './controller/dashboard.Note.js'
-import { createNote } from './controller/notes.js'
+import { createNote, updateNote, deleteNote } from './controller/notes.js'
 
 
 
@@ -56,8 +56,8 @@ router.delete("/blocks/:id", deleteBlock)
 
 router.get("/blocks/:id/notes", getNotes)
 router.post("/blocks/:id/notes", createNote)
-//router.put("/notes/:id", updateNote)
-//router.delete("/notes/:id", deleteNote)
+router.put("/notes/:id", updateNote)
+router.delete("/notes/:id", deleteNote)
 
 
 export default router

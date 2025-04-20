@@ -10,7 +10,7 @@ export const createBlock = async (request, response, next) => {
         const userId = request.user._id
         const titleBlock = request.body.title
 
-        const lastBlock = await DashboardBlock.findOne({ user: userId }).short({ order: -1 })
+        const lastBlock = await DashboardBlock.findOne({ user: userId }).sort({ order: -1 })
         const newOrder = lastBlock ? lastBlock.order + 1 : 1
         console.log(`Calculated new order ${newOrder}`)
 

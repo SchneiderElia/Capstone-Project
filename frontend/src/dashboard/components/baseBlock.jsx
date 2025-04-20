@@ -1,8 +1,11 @@
 import React from "react"
 import { Link } from "react-router-dom"
+import Button from 'react-bootstrap/Button'
+import EditableTitle from "./editableTitle"
 
-const BaseBlock =  ({ id, index }) => {
+const BaseBlock =  ({ id, index, onDelete, onTitleUpdate, title }) => {
 
+    console.log(`BaseBlock ID: ${id} - Received title prop:`, title)
     const isLarge = (index % 4 === 0 || index % 4 === 3)
 
     const baseStyle = {
@@ -28,12 +31,37 @@ const BaseBlock =  ({ id, index }) => {
 
     const boxPath = `/dashboard/block/${id}`
 
+    const handleDeleteClick = (event) => {
+        event.preventDefault()
+        if(onDelete){
+            console.log(`Block ID request to delete: ${id}`)
+            onDelete(id)
+        }else{
+            console.log('Prpo do not pass to handleDeleteBlock')
+        }
+    }
+
+    const handleSaveTitle = (newTitleFromInput) => {
+       
+        console.log(`BaseBlock: Recived new title "${newTitleFromInput}" t0 ID ${id}`)
+        if(onTitleUpdate){
+            onTitleUpdate(id, newTitleFromInput)
+        }else{
+            console.log("Title not updated skip saving")
+        }
+    }
+        
     return(
+       
         <Link to={boxPath} style={{ ...baseStyle, ...sizeStyle }}>
         <div>
+            <EditableTitle initialTitle={title} onSaveTitle={handleSaveTitle}/>
             Blocco #{id} ({isLarge ? 'Largo 60%' : 'Piccolo 35%'})
+            <Button variant="primary" onClick={handleDeleteClick}>delete</Button>
         </div>
+        
         </Link>
+
 
 )}
 

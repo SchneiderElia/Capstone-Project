@@ -40,7 +40,7 @@ router.get('/auth/google/callback', passport.authenticate('google', {
     )
 
 /////////  DASHBOARD routes ////////////
-//router.use(authorization)
+router.use(authorization)
 
 router.get('/dashboard', getDashboard)
 

@@ -12,7 +12,7 @@ function GoogleLog ({text}) {
     }
 
     return (
-        <Button onClick={hendleGoogleLogin} variant="dark" className="login mt-5">
+        <Button onClick={hendleGoogleLogin} variant="light" className="login mt-5">
             <Icon icon="flat-color-icons:google" width="20" height="20" className="me-3" />
             {text}
         </Button>

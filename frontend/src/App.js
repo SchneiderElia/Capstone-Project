@@ -3,7 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 
-import Home from './home/Home.js'
+import Home from './home/Home.jsx'
+import HomeNew from './home/HomeNew.jsx'
 import Dashboard from './dashboard/dashboard'
 import DashboardBlock from './dashboardBlock/dashboardBlock.jsx'
 import AuthCallback from './home/AuthCallback.jsx'
@@ -27,9 +28,9 @@ function App() {
     >
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/login' element={<Home />} />
-          <Route path='/signin' element={<Home />} />
+          <Route path='/' element={<HomeNew />} />
+          <Route path='/login' element={<HomeNew />} />
+          <Route path='/signin' element={<HomeNew />} />
           <Route path='/auth/google/callback' element={<AuthCallback />} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path= '/dashboard/block/:id' element={<DashboardBlock />} />

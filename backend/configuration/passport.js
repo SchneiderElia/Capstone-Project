@@ -13,6 +13,7 @@ const googleStrategy = new GoogleStrategy({
 
   async function(accessToken, refreshToken, profile, cb){
   
+    try{
     console.log(profile)
 
     let user = await User.findOne({googleId: profile.id})
@@ -30,17 +31,23 @@ const googleStrategy = new GoogleStrategy({
           googleId: profile.id,
           //username : profile.displayName
         });
-      console.log("Sucesfully user create")
+      console.log("Sucesfully user create", user)
     }
 
-    jwt.sign(
+/*     jwt.sign(
         { userId: user._id },
         process.env.JWT_SECRET,
         { expiresIn: '1h' },
         (err, token) => {
             return cb(err, { token });
         }
-    )
+    ) */
+   return cb(null, user)
+}catch(error){
+  cconsole.error("Error in Google Strategy verify callback:", err)
+    return cb(error)
+}
+
 })
 
 export default googleStrategy

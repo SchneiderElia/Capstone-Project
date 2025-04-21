@@ -1,4 +1,5 @@
 import { Router } from 'express'
+import jwt from 'jsonwebtoken'
 
 
 /////////  ROUTS  ////////////
@@ -28,16 +29,56 @@ router.post('/signin', postSignIn)
 /////////  GOOGLE routes LOGIN+REGISTERED   ////////////
 
 router.get ('/auth/google', passport.authenticate('google', {
-    scope: ['profile', 'email']
+    scope: ['profile', 'email'], 
+    session : false
     }))
 
-router.get('/auth/google/callback', passport.authenticate('google', {
+/* router.get('/auth/google/callback', passport.authenticate('google', {
     session : false
 }),
         (request, response, next) =>{
            return response.redirect(process.env.SERVER_FRONTEND + '/dashboard?jwt=' + request.user.token)
         }
+    ) */
+
+    router.get('/auth/google/callback', passport.authenticate('google', {
+        session : false
+    }),
+        (request, response,next) => {
+            console.log('Google Callback Route Handler: User authenticated by Passport:', request.user?._id)
+
+            if(!request.user || !request.user._id){
+                console.error('User object not found on request after Google auth.')
+                return response.redirect(process.env.SERVER_FRONTEND + '/login?error=auth_failed')
+            }
+
+            try{
+                const payload = { userId: request.user._id }
+                const secret = process.env.JWT_SECRET
+                const options = { expiresIn: '1h' }
+                const jwtToken = jwt.sign(payload, secret, options)
+
+                console.log('Generated application JWT:', jwtToken)
+
+                const frontendCallbackUrl = `${process.env.SERVER_FRONTEND}/auth/google/callback?token=${jwtToken}`
+                console.log('Redirecting browser to frontend callback:', frontendCallbackUrl)
+
+              /*   response.status(200).json({
+                    "status" : "success",
+                    "message" : "User successfully logged",
+                    "token" : jwtToken
+                }) */
+
+                return response.redirect(process.env.SERVER_FRONTEND +"/auth/google/callback" + '?token=' + jwtToken)
+            }catch(error){
+                console.error('Error generating JWT:', error)
+                response.redirect(`${process.env.CLIENT_URL}/login?error=token_generation_failed`)
+            
+            }
+        }
     )
+        
+
 
 /////////  DASHBOARD routes ////////////
 router.use(authorization)

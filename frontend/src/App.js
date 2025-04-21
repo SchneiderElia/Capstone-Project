@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './home/Home.js'
 import Dashboard from './dashboard/dashboard'
 import DashboardBlock from './dashboardBlock/dashboardBlock.jsx'
+import AuthCallback from './home/AuthCallback.jsx'
 
 
 import { SnackbarProvider } from 'notistack'
@@ -29,6 +30,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Home />} />
           <Route path='/signin' element={<Home />} />
+          <Route path='/auth/google/callback' element={<AuthCallback />} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path= '/dashboard/block/:id' element={<DashboardBlock />} />
         </Routes>

@@ -84,11 +84,48 @@ export const postLogIn = async(request, response, next) => {
 
 export const postSignIn = async (request, response, next) => {
 
+    const {email, username, password} = request.body
+
+    if(!email && !username || !password){
+        const error = new Error ('Missing required field')
+        error.statusCode = 400
+        return next(error)
+    }
+
    try{
+
+    const existingUser = await User.findOne({ $or: [{ email: email }, { username: username }]})
+
+    if(existingUser){
+        const error = new Error('User already exists')
+        error.statusCode = 409
+        return next(error)
+    }
+
 
     const newUser = await User.create(request.body)
     console.log('New user successfully created')
-    response.send(newUser).status(201)
+    
+
+    if(!process.env.JWT_SECRET){
+            console.error("Critical Error; JWT_SECRET is not defined")
+            return next(new Error("Internal Server Error"))
+        }
+
+        const payload = {userId : newUser._id}
+        const secret = process.env.JWT_SECRET
+        const options = {expiresIn : '1h'}
+
+        const jwtToken = jwt.sign(payload, secret, options)
+
+        response.status(201).json({
+            message: "User successfully created",
+            user: newUser,
+            token: jwtToken
+        }
+    )
+        
+        console.log('User successfully logged') 
 
    }catch(error){
 

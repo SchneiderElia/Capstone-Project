@@ -9,7 +9,7 @@ import GoogleLog from "./googleLog"
 import { useSnackbar } from 'notistack'
 
 
-function LogInForm() {
+function LogInForm({text}) {
 
   const { enqueueSnackbar } = useSnackbar()
 
@@ -21,7 +21,7 @@ function LogInForm() {
       const username = document.getElementById('identifier').value
       const password = document.getElementById('password').value
       const email =document.getElementById('identifier').value
-      console.log('Data User', 'ID',username, 'PW',password)
+      console.log('Data User', 'ID',username, 'PW')
 
       try{
         const response = await fetch(urlApi, {
@@ -93,7 +93,7 @@ function LogInForm() {
       </div>
 
       <div className="d-flex align-items-center justify-content-center gap-2" >
-      <GoogleLog />
+      <GoogleLog text='Login whit Google'/>
       </div>
 
       {/* <h6 className="mt-5 text-white">Don't have an account?</h6>

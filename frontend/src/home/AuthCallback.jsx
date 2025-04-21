@@ -13,7 +13,7 @@ const AuthCallback = () =>{
         const jwtToken = queryParams.get('token')
 
         if(jwtToken){
-            console.log('Token received from URL', jwtToken)
+            console.log('Token received from URL')
             localStorage.setItem('token', jwtToken)
             console.log('Token saved to localStorage')
             navigate('/dashboard', {replace: true})

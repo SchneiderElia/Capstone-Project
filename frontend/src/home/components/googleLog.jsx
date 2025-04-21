@@ -5,7 +5,7 @@ import { Icon } from '@iconify/react'
 
 
 
-function GoogleLog () {
+function GoogleLog ({text}) {
 
     const hendleGoogleLogin = () => {
         window.location.href = 'http://localhost:4000/api/v1/auth/google'
@@ -14,7 +14,7 @@ function GoogleLog () {
     return (
         <Button onClick={hendleGoogleLogin} variant="dark" className="login mt-5">
             <Icon icon="flat-color-icons:google" width="20" height="20" className="me-3" />
-            Login whit Google
+            {text}
         </Button>
 )}
 

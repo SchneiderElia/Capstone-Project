@@ -7,7 +7,7 @@ const notesSchema = new Schema ({
         default : 'Untitled Note',
         trim: true,
     },
-    content: {
+    textContent: {
         type: String,
         default : '',
     },

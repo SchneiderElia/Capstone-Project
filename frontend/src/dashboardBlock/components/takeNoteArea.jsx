@@ -1,4 +1,4 @@
-import Recat, {useState, useEffect} from "react"
+import React, { useState, useEffect } from "react";
 import './takeNoteArea.css'
 
 const TakeNoteArea = ({ initialValue = '', onTextChange }) => {

@@ -68,7 +68,7 @@ const EditableTitle = ({ initialTitle = "Empty", onSaveTitle, })=> {
                     />
            
             ) : (
-                <h5 onClick={handleStartEditing}
+                <h5  className="text-white"onClick={handleStartEditing}
                 style={{ cursor: "pointer" }}
                 onMouseEnter={e => e.currentTarget.style.color = '#00000'}
                     onMouseLeave={e => e.currentTarget.style.borderColor = 'transparent'}

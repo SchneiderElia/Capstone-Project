@@ -4,7 +4,7 @@ import { Router } from 'express'
 /////////  ROUTS  ////////////
 import { getHome, postLogIn, postSignIn } from './controller/home.js'
 import { getDashboard,} from './controller/dashboard.js'
-import { createBlock, updateBlock, deleteBlock } from './controller/blocks.js'
+import { getSingleBlock, createBlock, updateBlock, deleteBlock } from './controller/blocks.js'
 import { getNotes } from './controller/dashboard.Note.js'
 import { createNote, updateNote, deleteNote } from './controller/notes.js'
 
@@ -47,6 +47,7 @@ router.get('/dashboard', getDashboard)
 
 /////////  BLOCKS   ////////////
 
+router.get("/blocks/:id", getSingleBlock)
 router.post("/blocks", createBlock)
 router.put("/blocks/:id", updateBlock)
 router.delete("/blocks/:id", deleteBlock)

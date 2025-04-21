@@ -49,16 +49,16 @@ export const updateNote = async(request, response, next) => {
         return response.status(400).send('Missing textContent field')
     }
     
-    if (Object.keys(updateFields).length === 0) {
+    if (Object.keys(updateFile).length === 0) {
         console.log(`Update note ${noteId} failed: No valid fields provided.`);
         return response.status(400).send('No valid fields provided for update.');
     }
-    console.log(`Attempting to update note ${noteId} with:`, updateFields);
+    console.log(`Attempting to update note ${noteId} with:`, updateFile);
 
     try{
         const updatedNote = await Note.findOneAndUpdate(
             { _id: noteId, user: userId },
-            {  $set: updateFields },
+            {  $set: updateFile },
             { new: true }
         )
         if(!updatedNote){
@@ -66,7 +66,7 @@ export const updateNote = async(request, response, next) => {
             return response.status(404).send('Note not found')
         }
         console.log(`Note updated successfully: ${updatedNote}`)
-        response.status(200).send(updatedNote)
+        response.status(200).json(updatedNote)
 
     }catch(error){
         console.log(`Error note not updated:`, error)

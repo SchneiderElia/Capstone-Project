@@ -238,7 +238,8 @@ const Dashboard = () => {
   }, [])
 
   return (
-    <main className="px-2 py-4 d-flex vh-100 bg-dark align-items-center">
+    <main className="px-2 py-4 d-flex vh-100 align-items-center"
+    style={{backgroundColor:"black"}}>
       <SideBar>
         <ProfileImg />
         <CreatBlock handleAddBlock={handleAddBlock} />

@@ -62,7 +62,7 @@ const LogInFormNew = () => {
   return (
     <>
       {isActive !== null && (
-        <div
+        <div className="formLogIn"
           style={{
             height: "20%",
             width: "20%",

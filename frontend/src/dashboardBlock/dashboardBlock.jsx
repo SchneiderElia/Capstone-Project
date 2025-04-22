@@ -279,12 +279,13 @@ useEffect(()=>{
 
 const handleSaveTitle = async (newTitle) => {
   setContainerInfo(prevInfo => prevInfo ? { ...prevInfo, title: newTitle } : null);
-  // Qui implementerai la logica con fetch PUT più avanti
+  
 }
 
 
   return (
-    <main className="px-2 py-4 d-flex vh-100 bg-dark align-items-center">
+    <main className="px-2 py-4 d-flex vh-100 align-items-center"
+      style={{backgroundColor:"black"}}>
       <SideBar>
         <ProfileImg />
         <LogOutBtn />

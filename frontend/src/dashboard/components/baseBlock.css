@@ -1,0 +1,25 @@
+.baseBlock {
+    border: 1px solid #0E6EFD;
+    border-radius: 8px;
+    padding-bottom: 30px;
+    padding: 20px;
+    height: 380px; 
+    color: white;
+    display: flex;
+    align-items:end;
+    
+    box-sizing: border-box;
+    flex-grow: 0;
+    flex-basis: 0;
+    box-shadow: 0 0 1px  #0E6EFD;
+
+    background-color: rgba(14, 110, 253, 0.1);
+    transition: box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+            
+}
+
+.baseBlock:hover {
+    box-shadow: 0 0 1px 1px#0E6EFD,0 0 10px 2px#0E6EFD; 
+    background-color: rgba(14, 110, 253, 0.2); 
+
+}

@@ -17,6 +17,7 @@ const HomeNew = () => {
 
     const handleLogIn = () =>{
         setIsActive("LogIn")
+        navigate("/login")
     }
 
     const handleSingIn = () =>{
@@ -50,7 +51,7 @@ const HomeNew = () => {
 
        {/* Area centrale con i bottoni */}
 
-      <div className="col-12 d-flex flex-md-row align-items-center flex-column justify-content-md-center gap-3 p-3 m-0" ref={actionAreaRef}>
+      <div className="col-12 d-flex flex-xl-row align-items-center flex-column justify-content-md-center gap-3 p-3 m-0" ref={actionAreaRef}>
 
          {/* --- Bottone SignIn  --- */}
          {isActive !== "SingIn" && (

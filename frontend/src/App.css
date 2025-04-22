@@ -1,0 +1,14 @@
+.inputTitleBox {
+    background-color: transparent;
+    outline: none;
+    color: #0e6efd;
+    font-size: 20px;
+    font-weight: 400;
+    
+}
+
+.inputTitleBox:focus {
+    outline: none;
+    border-color: transparent;
+    
+}

@@ -1,6 +1,7 @@
-import React, { useEffect, useState, useRef } from "react"
+import React, { useEffect, useState, useRef, forwardRef, useImperativeHandle} from "react"
+import "../../App.css"
 
-const EditableTitle = ({ initialTitle = "Empty", onSaveTitle, })=> {
+const EditableTitle = forwardRef (({ initialTitle = "Empty", onSaveTitle, }, ref) => {
 
     const [isEditing, setIsEditing] = useState(false)
     const [title, setTitle] = useState(initialTitle)
@@ -20,12 +21,22 @@ const EditableTitle = ({ initialTitle = "Empty", onSaveTitle, })=> {
         }
       }, [isEditing]);
 
+      const startEditing = () => {
+        setTitle(initialTitle);
+        setIsEditing(true);
+    };
+
     const handleStartEditing = (event) => {
         event.stopPropagation()
         event.preventDefault()
         setTitle(initialTitle)
         setIsEditing(true)
     }
+    const handleStartEditingClick = (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+        startEditing();
+    };
 
     const handleChange = (event) => {
         setTitle(event.target.value)
@@ -52,26 +63,35 @@ const EditableTitle = ({ initialTitle = "Empty", onSaveTitle, })=> {
 
     }
 
-    
+    const stop = (event) => {
+        event.stopPropagation()
+        event.preventDefault()
+    }
+
+    useImperativeHandle(ref, () => ({
+        triggerEdit: () => {
+            startEditing();
+        }
+    }));
 
     return(
         <div>
             {isEditing ? (
             
                     <input
+                    className="inputTitleBox"
                     ref={inputRef}
                     type="text"
                     value={title}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     onKeyDown={handleKeyDown}
+                    onClick={stop}
                     />
            
             ) : (
-                <h5  className="text-white"onClick={handleStartEditing}
-                style={{ cursor: "pointer" }}
-                onMouseEnter={e => e.currentTarget.style.color = '#00000'}
-                    onMouseLeave={e => e.currentTarget.style.borderColor = 'transparent'}
+                <h5  className="text-white "onClick={handleStartEditingClick}
+                style={{ cursor: "pointer"  }}
                 title="Click to edit"
                 >
                     {title}</h5>
@@ -79,6 +99,6 @@ const EditableTitle = ({ initialTitle = "Empty", onSaveTitle, })=> {
             )}
         </div>
     )
-}
+})
 
 export default EditableTitle

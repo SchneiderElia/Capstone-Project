@@ -7,7 +7,7 @@ import BaseBlock from "./baseBlock"
 const Board = ({ userInfo, blocks, onDeleteBlock, onUpdateTitle, }) => {
   
   return (
-    <div className="p-0 ms-5 me-3" style={{ height: "90vh", width: "100%" }}>
+    <div className="p-0 ms-5 me-3" style={{ height: "90vh", width: "100%", backgroundColor:"black" }}>
       <HelloUser username={userInfo ? userInfo.username : "Ospite"} />
       <div className="p-0 m-0 gap-3 justyfy-content-center" style={{display:"flex", flexWrap:'wrap'}}>
       

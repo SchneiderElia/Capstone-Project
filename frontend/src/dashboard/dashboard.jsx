@@ -8,7 +8,14 @@ import ProfileImg from "../global.components/components/profile.Img"
 import CreatBlock from "../global.components/components/creatBlock"
 
 
+
 const Dashboard = () => {
+
+const baseUrlApi = process.env.REACT_APP_API_BASE_URL;
+const apiVersion = process.env.REACT_APP_API_VERSION
+
+const apiUrl = `${baseUrlApi}/${apiVersion}`;
+
   const [userInfo, setUserInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -36,7 +43,7 @@ const Dashboard = () => {
     setError(null);
 
     try{
-        const urlApi = "http://localhost:4000/api/v1/blocks"
+        const urlApi = apiUrl + "/blocks"
         const response = await fetch(urlApi, {
             method: "POST",
             headers: {
@@ -92,7 +99,7 @@ const Dashboard = () => {
       setError(null);
 
       try{
-          const urlApi = `http://localhost:4000/api/v1/blocks/${blockIdToDelete}`
+          const urlApi = apiUrl + `/blocks/${blockIdToDelete}`
           const response = await fetch(urlApi, {
               method: "DELETE",
               headers: {
@@ -141,7 +148,7 @@ const Dashboard = () => {
         const previousBlocks = [...blocks]
 
         try{
-          const urlApi = `http://localhost:4000/api/v1/blocks/${blockIdUpdate}`
+          const urlApi = apiUrl + `/blocks/${blockIdUpdate}`
           const response = await fetch(urlApi, {
               method: "PUT",
               headers :{
@@ -197,7 +204,7 @@ const Dashboard = () => {
           console.log("Token not found")
           throw new Error("Authentication Request")
         }
-        const urlApi = "http://localhost:4000/api/v1/dashboard"
+        const urlApi = apiUrl + "/dashboard"
 
         const response = await fetch(
           urlApi,
@@ -238,8 +245,7 @@ const Dashboard = () => {
   }, [])
 
   return (
-    <main className="px-2 py-4 d-flex vh-100 align-items-center"
-    style={{backgroundColor:"black"}}>
+    <main className="px-2 py-4 d-flex vh-100 align-items-center main">
       <SideBar>
         <ProfileImg />
         <CreatBlock handleAddBlock={handleAddBlock} />

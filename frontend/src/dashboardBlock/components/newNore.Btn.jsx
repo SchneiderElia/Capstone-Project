@@ -1,10 +1,10 @@
 import React from "react";
 import { Icon } from '@iconify/react'
 
-const CreatBlock = ({ handleAddBlock, onClick }) => {
+const NewNoteBtn = ({onNewNote }) => {
   return (
     <Icon
-    onClick={handleAddBlock}
+    onClick={onNewNote}
       icon="lets-icons:add-ring-light"
       width="33"
       height="33"
@@ -13,4 +13,4 @@ const CreatBlock = ({ handleAddBlock, onClick }) => {
   );
 };
 
-export default CreatBlock;
+export default NewNoteBtn

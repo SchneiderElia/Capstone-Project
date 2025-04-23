@@ -21,7 +21,7 @@ const TakeNoteArea = ({ initialValue = '', onTextChange }) => {
 
     
     return(
-        <textarea className="noteArea" placeholder="Write Here!" value={text}
+        <textarea className="noteArea" placeholder="Pusch here Your Anxiety!" value={text}
         onChange={handleChange}>
 
         </textarea>

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
 import SideBar from "../global.components/sideBar";
 import ProfileImg from "../global.components/components/profile.Img";
 import LogOutBtn from "../global.components/components/logOutBtn";
@@ -10,9 +9,20 @@ import SideBarAllNoteView from "./components/sideBarAllNoteView"
 import { enqueueSnackbar } from "notistack"
 import EditableTitle from  "../dashboard/components/editableTitle";
 import Button from "react-bootstrap/esm/Button";
+import { Icon } from "@iconify/react"
+import CreatBlock from "../global.components/components/creatBlock";
+import "./components/takeNoteArea.css"
+import NewNoteBtn from "./components/newNore.Btn";
+import BackBtn from "./components/backBtn";
 
 
 const DashboardBlock = () => {
+
+  const baseUrlApi = process.env.REACT_APP_API_BASE_URL;
+const apiVersion = process.env.REACT_APP_API_VERSION
+
+const apiUrl = `${baseUrlApi}/${apiVersion}`;
+
   const { id:blockId } = useParams();
 
   const[containerInfo, setContainerInfo] = useState(null)
@@ -99,11 +109,11 @@ const DashboardBlock = () => {
         let urlApi
         let method
         if(editingNoteId){
-          urlApi = `http://localhost:4000/api/v1/notes/${editingNoteId}`
+          urlApi = apiUrl + `/notes/${editingNoteId}`
           method = "PUT"
           console.log(`Attempt to save newNote ${editingNoteId} whit data:`, dataNote)
         }else{
-          urlApi = `http://localhost:4000/api/v1/blocks/${blockId}/notes`
+          urlApi = apiUrl + `/blocks/${blockId}/notes`
           method = "POST"
           console.log(`Attempt to create newNote in container ID: ${blockId} whit data:`, dataNote)
         }
@@ -120,6 +130,7 @@ const DashboardBlock = () => {
         })
 
         const saveOrUpdateNote = await response.json()
+        console.log("response Served")
      
           
         if(editingNoteId){
@@ -184,7 +195,7 @@ const DashboardBlock = () => {
    
       try{
 
-        const noteUrlDelete = `http://localhost:4000/api/v1/notes/${noteIdToDelete}`
+        const noteUrlDelete = apiUrl + `/notes/${noteIdToDelete}`
         const noteDeleteResponse = await fetch(noteUrlDelete, {
           method: "DELETE",
           headers : {
@@ -224,7 +235,7 @@ useEffect(()=>{
         console.log("Token not found")
         throw new Error("Authentication Request")
       }
-      const urlApi = `http://localhost:4000/api/v1/blocks/${blockId}`
+      const urlApi = apiUrl + `/blocks/${blockId}`
 
       const response = await fetch(urlApi, {
           method: "GET",
@@ -243,7 +254,7 @@ useEffect(()=>{
       enqueueSnackbar("Data Block received", { variant: "success" })
     }
 
-      const notesUrl = `http://localhost:4000/api/v1/blocks/${blockId}/notes`
+      const notesUrl = apiUrl + `/blocks/${blockId}/notes`
     const notesResponse = await fetch(notesUrl, {
       method: "GET",
       headers : {
@@ -284,23 +295,33 @@ const handleSaveTitle = async (newTitle) => {
 
 
   return (
-    <main className="px-2 py-4 d-flex vh-100 align-items-center"
-      style={{backgroundColor:"black"}}>
+    <main className="px-2 py-4 d-flex vh-100 align-items-center justify-content-between main"
+     >
       <SideBar>
         <ProfileImg />
+        <NewNoteBtn onNewNote={handlerStartNewNote}/>
+        <BackBtn />
         <LogOutBtn />
       </SideBar>
-      <div className="px-2 py-4 d-flex flex-column vh-100 bg-dark">
-        <EditableTitle  initialTitle={containerInfo?.title} onSaveTitle={handleSaveTitle}/>
+      <div className="px-2 py-4 d-flex flex-column vh-100 justify-content-center " style={{width:"50%"}} >
+     {/*    <EditableTitle  initialTitle={containerInfo?.title} onSaveTitle={handleSaveTitle} style={{}}/> */}
+        <h2 className="text-white mb-5" style={{fontSize:"35px"}}></h2>
        
-       <h5>Create new Note</h5>
-       <input type="text" placeholder="Title" value={editingNoteTitle} onChange={(e) => setEditingNoteTitle(e.target.value)} key={`title-${editingNoteId || 'new'}`}  />
+       {/* <h5>Create new Note</h5> */}
+       <input className="titleInputNote" type="text" placeholder="Anxiety NoteTitle" value={editingNoteTitle} onChange={(e) => setEditingNoteTitle(e.target.value)} key={`title-${editingNoteId || 'new'}`}  />
        
         <TakeNoteArea key={editingNoteId || 'new-note-editor'} initialValue={editingNoteContent} onTextChange={setEditingNoteContent}/>
-        <Button onClick={handleSaveCreateNewNote}>
+       {/*  <Button onClick={handleSaveCreateNewNote}>
         {isSavingNote ? 'Salvataggio...' : (editingNoteId ? 'Aggiorna Nota' : 'Salva Nuova Nota')}
-          </Button>
+          </Button> */}
+          <div className="d-flex align-items-center gap-3 text-white">
+          <Icon className="mt-3" icon="tabler:cloud-up" width="35" height="35"  style={{color: "white", cursor: "pointer"}} onClick={handleSaveCreateNewNote} />
+          {isSavingNote ? 'Saveing...' : (editingNoteId ? 'Update Note' : 'Salve New Note')}
+          </div>
+            
       </div>
+      
+
       <SideBarAllNoteView note={notes} onDeleteNote={handleDeleteNote} onSelectNote={selectNoteToEdit}/>
     </main>
   );

@@ -1,0 +1,20 @@
+.noteCard{
+
+  width: 100%;
+    height:fit-content;
+    background-color: rgba(14, 110, 253, 0.23);
+    border: 2px solid #0e6efd;
+    color: whitesmoke;
+    resize: none;
+    border-radius:12px;
+    margin-bottom: 10px;
+    padding: 0px 15px;
+    padding-top: 7px;
+
+
+}
+
+.noteCard:hover{
+    box-shadow: 0 0 1px 1px#0E6EFD,0 0 10px 1px#0E6EFD; 
+    background-color: rgba(14, 110, 253, 0.2); 
+}

@@ -12,11 +12,16 @@ const LogInFormNew = () => {
   const [isActive, setIsActive] = useState(true);
 
    const { enqueueSnackbar } = useSnackbar()
+
+   const baseUrlApi = process.env.REACT_APP_API_BASE_URL;
+const apiVersion = process.env.REACT_APP_API_VERSION
+
+const apiUrl = `${baseUrlApi}/${apiVersion}`;
   
     async function handleSubmit(event) {
   
       event.preventDefault()
-        const urlApi = 'http://localhost:4000/api/v1/login'
+        const urlApi = apiUrl + '/login'
         //const identifier = document.getElementById('identifier').value
         const username = document.getElementById('identifier').value
         const password = document.getElementById('password').value

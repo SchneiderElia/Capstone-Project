@@ -6,9 +6,13 @@ import { Icon } from '@iconify/react'
 
 
 function GoogleLog ({text}) {
+    const baseUrlApi = process.env.REACT_APP_API_BASE_URL;
+    const apiVersion = process.env.REACT_APP_API_VERSION
+    
+    const apiUrl = `${baseUrlApi}/${apiVersion}`;
 
     const hendleGoogleLogin = () => {
-        window.location.href = 'http://localhost:4000/api/v1/auth/google'
+        window.location.href = apiUrl + '/auth/google'
     }
 
     return (

@@ -20,7 +20,7 @@ Interfaccia utente reattiva costruita con React Router, React Hooks e notifiche 
 <p>Fatto! </p>
 
 <hr>
-<h5>How lunch project</h5>
+<h5>How launch project</h5>
 -----------------------------------------
 <p>Apri il progetto in VsCode, apri il terminale o gitBash</p>
 <p> Spostati dentro la cartella del progetto con il comando: cd nome-repository</p>

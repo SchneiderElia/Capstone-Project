@@ -18,3 +18,15 @@ Interfaccia utente reattiva costruita con React Router, React Hooks e notifiche 
 <p>Apri il terminale o gitBash nella cartella dove vuoi clonare il repository</p>
 <p>Esegui il comando: git clone https://github.com/nomeutente/nomerepository.git</p>
 <p>Fatto! </p>
+
+<hr>
+<h5>How lunch project</h5>
+-----------------------------------------
+<p>Apri il progetto in VsCode, apri il terminale o gitBash</p>
+<p> Spostati dentro la cartella del progetto con il comando: cd nome-repository</p>
+<p>Esegui il comando: npm install</p>
+<p>Esegui il comando: npm start</p>
+<p>Fatto! </p>
+
+<p>P.S. esegui lo stesso procedimento per lanciare il server (backend)</p>
+

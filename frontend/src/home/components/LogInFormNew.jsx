@@ -27,7 +27,8 @@ const apiUrl = `${baseUrlApi}/${apiVersion}`;
         const password = document.getElementById('password').value
         const email =document.getElementById('identifier').value
         console.log('Data User', 'ID',username, 'PW')
-  
+        console.log(apiUrl)
+      
         try{
           const response = await fetch(urlApi, {
             method: 'POST',

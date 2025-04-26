@@ -12,7 +12,7 @@ function GoogleLog ({text}) {
     const apiUrl = `${baseUrlApi}/${apiVersion}`;
 
     const hendleGoogleLogin = () => {
-        window.location.href = apiUrl + '/auth/google'
+        window.location.href = apiUrl + '/auth/google/callback'
     }
 
     return (
